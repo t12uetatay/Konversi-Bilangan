@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">Konversi-Bilangan</string>
+    <string name="num_0">0</string>
+    <string name="num_1">1</string>
+    <string name="num_2">2</string>
+    <string name="num_3">3</string>
+    <string name="num_4">4</string>
+    <string name="num_5">5</string>
+    <string name="num_6">6</string>
+    <string name="num_7">7</string>
+    <string name="num_8">8</string>
+    <string name="num_9">9</string>
+    <string name="num_10">A</string>
+    <string name="num_11">B</string>
+    <string name="num_12">C</string>
+    <string name="num_13">D</string>
+    <string name="num_14">E</string>
+    <string name="num_15">F</string>
+    <string name="equals">=</string>
+    <string name="del">DEL</string>
+    <string name="clear">C</string>
+    <string name="binary">BIN</string>
+    <string name="decimal">DEC</string>
+    <string name="oktal">OCT</string>
+    <string name="hexa">HEX</string>
+    <array name="options">
+        <item>Biner</item>
+        <item>Desimal</item>
+        <item>Oktal</item>
+        <item>Heksadesimal</item>
+    </array>
 </resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_result">56sp</dimen>
+    <dimen name="text_input">24sp</dimen>
+    <dimen name="text_operation">24sp</dimen>
+    <dimen name="activity_padding">20dp</dimen>
+    <dimen name="button">70dp</dimen>
+    <dimen name="button_margin">16dp</dimen>
+    <dimen name="button_radius">16dp</dimen>
+    <dimen name="button_text">24sp</dimen>
+    <dimen name="button_text_opr">20sp</dimen>
+</resources>

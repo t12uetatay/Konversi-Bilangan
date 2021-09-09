@@ -1,18 +1,561 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:background="?colorSecondaryVariant"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:cardCornerRadius="@dimen/button_radius"
+            app:cardUseCompatPadding="true"
+            android:layout_margin="8dp"
+            app:contentPadding="@dimen/button_radius">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/text_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textSize="@dimen/text_input"
+                    android:text="@string/num_0"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/opr_a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/text_result"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@id/text_input"
+                    android:text="@string/decimal"
+                    android:textSize="@dimen/text_operation" />
+
+
+                <TextView
+                    android:id="@+id/text_result"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text_input"
+                    android:layout_toLeftOf="@+id/opr_b"
+                    android:maxLines="1"
+                    android:scrollbars="horizontal"
+                    android:text="@string/num_0"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textSize="@dimen/text_result"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/opr_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text_input"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/decimal"
+                    android:textSize="@dimen/text_operation" />
+
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/button"
+                    android:layout_height="@dimen/button"
+                    app:cardCornerRadius="@dimen/button_radius"
+                    android:layout_margin="8dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_13"
+                        android:layout_width="@dimen/button"
+                        android:layout_height="@dimen/button"
+                        android:text="@string/num_13"
+                        android:textSize="@dimen/button_text"
+                        android:enabled="false"
+                        android:background="@android:color/transparent"
+                        android:onClick="onDigit"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/button"
+                    android:layout_height="@dimen/button"
+                    app:cardCornerRadius="@dimen/button_radius"
+                    android:layout_margin="8dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_14"
+                        android:layout_width="@dimen/button"
+                        android:layout_height="@dimen/button"
+                        android:text="@string/num_14"
+                        android:textSize="@dimen/button_text"
+                        android:enabled="false"
+                        android:background="@android:color/transparent"
+                        android:onClick="onDigit"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/button"
+                    android:layout_height="@dimen/button"
+                    app:cardCornerRadius="@dimen/button_radius"
+                    android:layout_margin="8dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_15"
+                        android:layout_width="@dimen/button"
+                        android:layout_height="@dimen/button"
+                        android:text="@string/num_15"
+                        android:textSize="@dimen/button_text"
+                        android:enabled="false"
+                        android:background="@android:color/transparent"
+                        android:onClick="onDigit"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/button"
+                    android:layout_height="@dimen/button"
+                    app:cardCornerRadius="@dimen/button_radius"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/yellow">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="@dimen/button"
+                        android:layout_height="@dimen/button"
+                        android:text="@string/binary"
+                        android:textSize="@dimen/button_text_opr"
+                        android:background="@android:color/transparent"
+                        android:onClick="bin"/>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/button"
+                    android:layout_height="@dimen/button"
+                    app:cardCornerRadius="@dimen/button_radius"
+                    android:layout_margin="8dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_10"
+                        android:layout_width="@dimen/button"
+                        android:layout_height="@dimen/button"
+                        android:text="@string/num_10"
+                        android:textSize="@dimen/button_text"
+                        android:enabled="false"
+                        android:background="@android:color/transparent"
+                        android:onClick="onDigit"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/button"
+                    android:layout_height="@dimen/button"
+                    app:cardCornerRadius="@dimen/button_radius"
+                    android:layout_margin="8dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_11"
+                        android:layout_width="@dimen/button"
+                        android:layout_height="@dimen/button"
+                        android:text="@string/num_11"
+                        android:textSize="@dimen/button_text"
+                        android:enabled="false"
+                        android:background="@android:color/transparent"
+                        android:onClick="onDigit"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/button"
+                    android:layout_height="@dimen/button"
+                    app:cardCornerRadius="@dimen/button_radius"
+                    android:layout_margin="8dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_12"
+                        android:layout_width="@dimen/button"
+                        android:layout_height="@dimen/button"
+                        android:text="@string/num_12"
+                        android:enabled="false"
+                        android:textSize="@dimen/button_text"
+                        android:background="@android:color/transparent"
+                        android:onClick="onDigit"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/button"
+                    android:layout_height="@dimen/button"
+                    app:cardCornerRadius="@dimen/button_radius"
+                    app:cardBackgroundColor="@color/yellow"
+                    android:layout_margin="8dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="@dimen/button"
+                        android:layout_height="@dimen/button"
+                        android:text="@string/decimal"
+                        android:textSize="@dimen/button_text_opr"
+                        android:background="@android:color/transparent"
+                        android:onClick="dec"/>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/button"
+                    android:layout_height="@dimen/button"
+                    app:cardCornerRadius="@dimen/button_radius"
+                    android:layout_margin="8dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_7"
+                        android:layout_width="@dimen/button"
+                        android:layout_height="@dimen/button"
+                        android:text="@string/num_7"
+                        android:textSize="@dimen/button_text"
+                        android:background="@android:color/transparent"
+                        android:onClick="onDigit"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/button"
+                    android:layout_height="@dimen/button"
+                    app:cardCornerRadius="@dimen/button_radius"
+                    android:layout_margin="8dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_8"
+                        android:layout_width="@dimen/button"
+                        android:layout_height="@dimen/button"
+                        android:text="@string/num_8"
+                        android:textSize="@dimen/button_text"
+                        android:background="@android:color/transparent"
+                        android:onClick="onDigit"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/button"
+                    android:layout_height="@dimen/button"
+                    app:cardCornerRadius="@dimen/button_radius"
+                    android:layout_margin="8dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_9"
+                        android:layout_width="@dimen/button"
+                        android:layout_height="@dimen/button"
+                        android:text="@string/num_9"
+                        android:textSize="@dimen/button_text"
+                        android:background="@android:color/transparent"
+                        android:onClick="onDigit"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/button"
+                    android:layout_height="@dimen/button"
+                    app:cardCornerRadius="@dimen/button_radius"
+                    app:cardBackgroundColor="@color/yellow"
+                    android:layout_margin="8dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="@dimen/button"
+                        android:layout_height="@dimen/button"
+                        android:text="@string/oktal"
+                        android:textSize="@dimen/button_text_opr"
+                        android:background="@android:color/transparent"
+                        android:onClick="oct"/>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/button"
+                    android:layout_height="@dimen/button"
+                    app:cardCornerRadius="@dimen/button_radius"
+                    android:layout_margin="8dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_4"
+                        android:layout_width="@dimen/button"
+                        android:layout_height="@dimen/button"
+                        android:text="@string/num_4"
+                        android:textSize="@dimen/button_text"
+                        android:background="@android:color/transparent"
+                        android:onClick="onDigit"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/button"
+                    android:layout_height="@dimen/button"
+                    app:cardCornerRadius="@dimen/button_radius"
+                    android:layout_margin="8dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_5"
+                        android:layout_width="@dimen/button"
+                        android:layout_height="@dimen/button"
+                        android:text="@string/num_5"
+                        android:textSize="@dimen/button_text"
+                        android:background="@android:color/transparent"
+                        android:onClick="onDigit"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/button"
+                    android:layout_height="@dimen/button"
+                    app:cardCornerRadius="@dimen/button_radius"
+                    android:layout_margin="8dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_6"
+                        android:layout_width="@dimen/button"
+                        android:layout_height="@dimen/button"
+                        android:text="@string/num_6"
+                        android:textSize="@dimen/button_text"
+                        android:background="@android:color/transparent"
+                        android:onClick="onDigit"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/button"
+                    android:layout_height="@dimen/button"
+                    app:cardCornerRadius="@dimen/button_radius"
+                    app:cardBackgroundColor="@color/yellow"
+                    android:layout_margin="8dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="@dimen/button"
+                        android:layout_height="@dimen/button"
+                        android:text="@string/hexa"
+                        android:textSize="@dimen/button_text_opr"
+                        android:background="@android:color/transparent"
+                        android:onClick="hex"/>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="@dimen/button"
+                            android:layout_height="@dimen/button"
+                            app:cardCornerRadius="@dimen/button_radius"
+                            android:layout_margin="8dp">
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btn_1"
+                                android:layout_width="@dimen/button"
+                                android:layout_height="@dimen/button"
+                                android:text="@string/num_1"
+                                android:textSize="@dimen/button_text"
+                                android:background="@android:color/transparent"
+                                android:onClick="onDigit"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="@dimen/button"
+                            android:layout_height="@dimen/button"
+                            app:cardCornerRadius="@dimen/button_radius"
+                            android:layout_margin="8dp">
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btn_2"
+                                android:layout_width="@dimen/button"
+                                android:layout_height="@dimen/button"
+                                android:text="@string/num_2"
+                                android:textSize="@dimen/button_text"
+                                android:background="@android:color/transparent"
+                                android:onClick="onDigit"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="@dimen/button"
+                            android:layout_height="@dimen/button"
+                            app:cardCornerRadius="@dimen/button_radius"
+                            android:layout_margin="8dp">
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btn_3"
+                                android:layout_width="@dimen/button"
+                                android:layout_height="@dimen/button"
+                                android:text="@string/num_3"
+                                android:textSize="@dimen/button_text"
+                                android:background="@android:color/transparent"
+                                android:onClick="onDigit"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="@dimen/button"
+                            android:layout_height="@dimen/button"
+                            app:cardCornerRadius="@dimen/button_radius"
+                            android:layout_margin="8dp">
+
+                            <androidx.appcompat.widget.AppCompatImageButton
+                                android:layout_width="@dimen/button"
+                                android:layout_height="@dimen/button"
+                                android:src="@drawable/ic_baseline_refresh_24"
+                                android:textSize="@dimen/button_text"
+                                android:background="@android:color/transparent"
+                                android:onClick="onRes"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="@dimen/button"
+                            android:layout_height="@dimen/button"
+                            app:cardCornerRadius="@dimen/button_radius"
+                            android:layout_margin="8dp">
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btn_0"
+                                android:layout_width="@dimen/button"
+                                android:layout_height="@dimen/button"
+                                android:text="@string/num_0"
+                                android:textSize="@dimen/button_text"
+                                android:background="@android:color/transparent"
+                                android:onClick="onDigit"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="@dimen/button"
+                            android:layout_height="@dimen/button"
+                            app:cardCornerRadius="@dimen/button_radius"
+                            app:cardBackgroundColor="@color/primary_dark"
+                            android:layout_margin="8dp">
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:layout_width="@dimen/button"
+                                android:layout_height="@dimen/button"
+                                android:text="@string/del"
+                                android:textSize="@dimen/button_text_opr"
+                                android:background="@android:color/transparent"
+                                android:onClick="onClear"/>
+
+                        </androidx.cardview.widget.CardView>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/button"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="@dimen/button_radius"
+                    app:cardBackgroundColor="@color/green"
+                    android:layout_margin="8dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="@dimen/button"
+                        android:layout_height="148dp"
+                        android:text="@string/equals"
+                        android:textSize="@dimen/button_text"
+                        android:background="@android:color/transparent"
+                        android:onClick="getResult"/>
+
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
